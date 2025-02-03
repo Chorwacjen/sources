@@ -1,15 +1,15 @@
 function searchResults(html) {
 
     const results = [];
-    const filmListRegex = /<div class='item'>([\s\S]*?)<div class='inner'><\/div><\/div>/g;
+    const filmListRegex = /<div class='item'[\s\S]*?<\/div>\s*<\/div>/gi;
     const items = html.matchAll(filmListRegex);
 
     for (const item of items) {
-        const itemHtml = item[1];
+        const itemHtml = item[0];
         
-        const titleMatch = itemHtml.match(/<a\s+href='[^']+'\s+class='name'>([^<]+)<\/a>/);
-        const hrefMatch = itemHtml.match(/<a\s+href='([^']+)'/);
-        const imgMatch = itemHtml.match(/<img[^>]+src='([^']+)'[^>]+alt='([^']+)'/);
+        const titleMatch = itemHtml.match(/<a\s+[^>]*class='name'[^>]+>([^<]+)<\/a>/i);
+        const hrefMatch = itemHtml.match(/<a\s+[^>]*href='([^']+)'/i);
+        const imgMatch = itemHtml.match(/<img[^>]+src=['"]([^'"]+)['"][^>]*>/i);
 
         if (titleMatch && hrefMatch && imgMatch) {
             const title = titleMatch[1];

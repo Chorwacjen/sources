@@ -7,9 +7,9 @@ function searchResults(html) {
     for (const item of items) {
         const itemHtml = item[1];
         
-        const titleMatch = itemHtml.match(/<a href='[^']+' class='name'>([^<]+)<\/a>/);
-        const hrefMatch = itemHtml.match(/<a href='([^']+)'/);
-        const imgMatch = itemHtml.match(/<img loading='[^']+' src='([^']+)' alt='([^']+)'>/);
+        const titleMatch = itemHtml.match(/<a\s+href='[^']+'\s+class='name'>([^<]+)<\/a>/);
+        const hrefMatch = itemHtml.match(/<a\s+href='([^']+)'/);
+        const imgMatch = itemHtml.match(/<img[^>]+src='([^']+)'[^>]+alt='([^']+)'/);
 
         if (titleMatch && hrefMatch && imgMatch) {
             const title = titleMatch[1];
@@ -24,9 +24,8 @@ function searchResults(html) {
                 image: fullImageUrl.trim(),
                 href: fullHref.trim()
             });
-        
         }
-
+    }
     return results;
 }
 
@@ -40,7 +39,7 @@ function extractDetails(html) {
     const aliasesMatch = html.match(/<div class='title'>([^<]+)<\/div>/) ;
     let aliases = aliasesMatch ? aliasesMatch[1] : '';
 
-    const airdateMatch = html.match(/<dt>.*?<\/dt><dd>.*?Data di Uscita:(.*?)<\/dd>/g) ;
+    const airdateMatch = html.match(/Data di Uscita:\s*([^<]+)/);
     let airdate = airdateMatch ? airdateMatch[1] : '';
 
     if (description && airdate) {

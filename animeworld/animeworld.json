@@ -1,0 +1,15 @@
+{
+    "sourceName": "AnimeWorld",
+    "iconUrl": "https://raw.githubusercontent.com/Chorwacjen/sources/refs/heads/main/animeworld/animeworld.png",
+    "author": {
+        "name": "chorwacjen",
+        "icon": "https://avatars.githubusercontent.com/u/147919489?v=4"
+    },
+    "version": "1.0.0",
+    "language": "Italian (SUB/DUB)",
+    "streamType": "MP4",
+    "quality": "720p",
+    "baseUrl": "https://www.animeworld.so/",
+    "searchBaseUrl": "https://www.animeworld.so/search?keyword=%s",
+    "scriptUrl": "https://raw.githubusercontent.com/Chorwacjen/sources/refs/heads/main/animeworld/animeworld.js"
+}

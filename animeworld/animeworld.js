@@ -1,12 +1,12 @@
 function searchResults(html) {
 
     const results = [];
-    const baseUrl = "https://www.animeworld.so/";
-
     const filmListRegex = /<div class='item'>([\s\S]*?)<div class='inner'><\/div><\/div>/g;
-    const items = html.match(filmListRegex);
+    const items = html.matchAll(filmListRegex);
 
     for (const item of items) {
+        const itemHtml = item[1];
+        
         const titleMatch = itemHtml.match(/<a href='[^']+' class='name'>([^<]+)<\/a>/);
         const hrefMatch = itemHtml.match(/<a href='([^']+)'/);
         const imgMatch = itemHtml.match(/<img loading='[^']+' src='([^']+)' alt='([^']+)'>/);
